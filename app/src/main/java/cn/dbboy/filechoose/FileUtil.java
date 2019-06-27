@@ -62,6 +62,8 @@ public class FileUtil {
         // DocumentProvider
         if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
             // ExternalStorageProvider
+            //一些三方的文件浏览器会进入到这个方法中，例如ES
+            //QQ文件管理器不在此列
             if (isExternalStorageDocument(uri)) {
                 final String docId = DocumentsContract.getDocumentId(uri);
                 final String[] split = docId.split(":");
