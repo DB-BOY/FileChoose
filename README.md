@@ -1,8 +1,6 @@
 # Android浏览文件
 >记一次文件上传引发的血案
 
-[测试Demo](https://github.com/DB-BOY/FileChoose)
-
 ------
 
 ###### 前情描述：
@@ -312,6 +310,7 @@ if (isQQMediaDocument(uri)) {
         ![设置"*/*"](./pic/vivox21_hidethird.png){:height="400" width="300"}
         
    * ```intent.setType("video/mp4);```
+   
     1. 这种会显示三方文件管理器，但是会过滤掉其他的文件，只有video类型的，如果有avi类型，那么还需要在```onActivityResult```中判断文件后缀名。
     2. 系统的文件管理器会生效，只能选择```Intent.EXTRA_MIME_TYPES```设置的类型
     
