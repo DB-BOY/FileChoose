@@ -1,7 +1,7 @@
 # Android浏览文件
 >记一次文件上传引发的血案
 
-[测试Demo](http://gitlab.docbook.com.cn:91/db_boy/FileChoose)
+[测试Demo](https://github.com/DB-BOY/FileChoose)
 
 ------
 
