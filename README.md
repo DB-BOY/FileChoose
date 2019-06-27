@@ -301,13 +301,12 @@ if (isQQMediaDocument(uri)) {
     
    * ```intent.setType("*/*")```
     
+    这种情况下，本意是想选择office文档。通过```Intent.EXTRA_MIME_TYPES```来限制文件类型，但是这种情况下，会出现第三方的文件管理器，而三方的一些情况下不会生效，所有文件都可以选择。
+        
+    我做的是，通过观察MIME类型，我设置的是```application/*```第三方的文件管理图标隐藏掉了，只能通过系统的文件管理选择文件。
     
-        这种情况下，本意是想选择office文档。通过```Intent.EXTRA_MIME_TYPES```来限制文件类型，但是这种情况下，会出现第三方的文件管理器，而三方的一些情况下不会生效，所有文件都可以选择。
-        
-        我做的是，通过观察MIME类型，我设置的是```application/*```第三方的文件管理图标隐藏掉了，只能通过系统的文件管理选择文件。
-        
-        ![设置"*/*"](./pic/vivox21.png){:height="400" width="300"}
-        ![设置"*/*"](./pic/vivox21_hidethird.png){:height="400" width="300"}
+    ![设置"*/*"](./pic/vivox21.png){:height="400" width="300"}
+    ![设置"*/*"](./pic/vivox21_hidethird.png){:height="400" width="300"}
         
    * ```intent.setType("video/mp4);```
    
