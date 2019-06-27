@@ -17,3 +17,33 @@
 
 #### 1. MIME
 > MIME (Multipurpose Internet Mail Extensions) 是描述消息内容类型的因特网标准。
+
+#### 2. 调起文件管理器
+
+1. 所有类型文件
+````
+    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+    //任意类型文件
+    intent.setType("*/*");
+    intent.addCategory(Intent.CATEGORY_OPENABLE);
+    startActivityForResult(intent,1);
+    
+    
+    //-------常用类型
+        //图片
+    //intent.setType(“image/*”);
+        //音频
+    //intent.setType(“audio/*”);
+        //视频
+    //intent.setType(“video/*”); 
+    //intent.setType(“video/*;image/*”);
+
+````
+2. 系统的相冊
+
+````
+    Intent intent= new Intent(Intent.ACTION_PICK, null);
+    intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+    startActivityForResult(intent, REQUEST_CODE_FILE);
+
+````
