@@ -305,8 +305,8 @@ if (isQQMediaDocument(uri)) {
         
     我做的是，通过观察MIME类型，我设置的是```application/*```第三方的文件管理图标隐藏掉了，只能通过系统的文件管理选择文件。
     
-    ![设置"*/*"](./pic/vivox21.png){:height="400" width="300"}
-    ![设置"*/*"](./pic/vivox21_hidethird.png){:height="400" width="300"}
+    ![设置"*/*"](./pic/vivox21.png)
+    ![设置"*/*"](./pic/vivox21_hidethird.png)
         
    * ```intent.setType("video/mp4);```
    
