@@ -283,7 +283,7 @@ if (isQQMediaDocument(uri)) {
 
 #### 其他问题
 
-1. 文件类型设置
+##### 1. 文件类型设置
 
 产品需求：
  
@@ -315,7 +315,7 @@ if (isQQMediaDocument(uri)) {
     
 
 
-2. 返回URI的问题
+##### 2. 返回URI的问题
 
   * 从文件管理器选择文件，返回的URI是```content://com.android.externalstorage.documents/document/primary/update/A5679B1.mp4```
   * 从『视频』选择文件，返回的URI是```content://com.android.providers.media.documents/document/video:5188```
