@@ -314,3 +314,15 @@ if (isQQMediaDocument(uri)) {
     2. 系统的文件管理器会生效，只能选择```Intent.EXTRA_MIME_TYPES```设置的类型
     
 
+
+2. 返回URI的问题
+
+  * 从文件管理器选择文件，返回的URI是```content://com.android.externalstorage.documents/document/primary/update/A5679B1.mp4```
+  * 从『视频』选择文件，返回的URI是```content://com.android.providers.media.documents/document/video:5188```
+  
+  遇到的问题：
+  
+  判断文件格式是否是我设置的类型，如果```intent.setType("video/*");```，但是只想要"mp4"格式的文件，那么在```onActivityResult```中通过返回的数据进行判断，前期想的是通过```uri.getLastPathsegment()```，判断文件的后缀名，但是后来测试遇到了第二种情况，从『视频』里选择到文件，这时返回URI不符合规则了，所以偷懒是不行的，只能通过转换，将源文件的名称，判断后缀名。
+  
+  ![选择视频](./pic/huawei_video.png)
+  

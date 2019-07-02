@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
             //content://com.android.providers.media.documents/document/video:5186
             //必须要通过path去判断
             
-            String name = uri.getLastPathSegment().toLowerCase();
+            String name =path.toLowerCase();
             if (!checkFileType(name)) {
                 Toast.makeText(this, "暂不支持文件类型", Toast.LENGTH_SHORT).show();
                 return;
