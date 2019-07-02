@@ -149,13 +149,7 @@ public class MainActivity extends AppCompatActivity {
             String s = uri.toString() + "  \n " + uri.getPath() + " \n " + uri.getAuthority();
             tv.setText(s);
             Log.i("-----", s);
-
-            String name = uri.getLastPathSegment().toLowerCase();
-            if (!checkFileType(name)) {
-                Toast.makeText(this, "暂不支持文件类型", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
+            
             if ("file".equalsIgnoreCase(uri.getScheme())) {//使用第三方应用打开
                 path = uri.getPath();
             } else {
@@ -165,6 +159,17 @@ public class MainActivity extends AppCompatActivity {
                     path = FileUtil.getRealPathFromURI(this, uri);
                 }
             }
+
+            //uri.getLastPathsegment()不一定能获取到文件名
+            //content://com.android.providers.media.documents/document/video:5186
+            //必须要通过path去判断
+            
+            String name = uri.getLastPathSegment().toLowerCase();
+            if (!checkFileType(name)) {
+                Toast.makeText(this, "暂不支持文件类型", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
 
             doSomething();
         }
