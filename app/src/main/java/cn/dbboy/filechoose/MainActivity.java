@@ -22,6 +22,7 @@ import android.widget.Toast;
 import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity-file";
 
     private static final String DOC = "application/msword";
     private static final String DOCX = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             int permissionRead = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            Log.i(TAG, "permissionRead: " + permissionRead);
             if (permissionRead == PackageManager.PERMISSION_GRANTED) {
                 grantSuccess();
             } else {
@@ -146,15 +148,16 @@ public class MainActivity extends AppCompatActivity {
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_FILE) {
             Uri uri = data.getData();
             tv.setText("");
-            String s = uri.toString() + "  \n " + uri.getPath() + " \n " + uri.getAuthority();
+            String s = "uri:" + uri.toString() + "\ngetPath:" + uri.getPath() + "\ngetAuthority:" + uri.getAuthority();
             tv.setText(s);
-            Log.i("-----", s);
+            Log.i(TAG, s);
             
             if ("file".equalsIgnoreCase(uri.getScheme())) {//使用第三方应用打开
                 path = uri.getPath();
             } else {
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {//4.4以后
                     path = FileUtil.getPath(this, uri);
+                    Log.i(TAG, "path: " + path);
                 } else {//4.4以下下系统调用方法
                     path = FileUtil.getRealPathFromURI(this, uri);
                 }
@@ -163,8 +166,11 @@ public class MainActivity extends AppCompatActivity {
             //uri.getLastPathsegment()不一定能获取到文件名
             //content://com.android.providers.media.documents/document/video:5186
             //必须要通过path去判断
-            
-            String name =path.toLowerCase();
+            if (path == null){
+                Toast.makeText(this, "失败了", Toast.LENGTH_LONG).show();
+                return;
+            }
+            String name = path.toLowerCase();
             if (!checkFileType(name)) {
                 Toast.makeText(this, "暂不支持文件类型", Toast.LENGTH_SHORT).show();
                 return;
